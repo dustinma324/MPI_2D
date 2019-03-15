@@ -9,7 +9,7 @@
  */
 
 #include "definitions.h"
-#include "myFunctions.h"
+#include "Functions.h"
 
 INT main(INT argc, char **argv)
 {

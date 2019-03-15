@@ -12,10 +12,10 @@ DEBUG = -g
 LIBS=-lm 
 CFLAGS=-Wall -O3 -std=c99 $(DEBUG) -I$(IDIR) 
 
-_DEPS = myFunctions.h definitions.h
+_DEPS = Functions.h definitions.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJS = main.o myFunctions.o 
+_OBJS = main.o Functions.o 
 OBJS = $(patsubst %,$(OBJDIR)/%,$(_OBJS))
 
 
