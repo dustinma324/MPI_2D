@@ -1,0 +1,18 @@
+myRank=1, mySource= 0, myDestination= 2, nrow=625, [start=625, end=1250, startLocal= 1, endLocal=626] 
+myRank=8, mySource= 7, myDestination= 9, nrow=625, [start=5000, end=5625, startLocal= 1, endLocal=626] 
+myRank=2, mySource= 1, myDestination= 3, nrow=625, [start=1250, end=1875, startLocal= 1, endLocal=626] 
+myRank=9, mySource= 8, myDestination=10, nrow=625, [start=5625, end=6250, startLocal= 1, endLocal=626] 
+myRank=3, mySource= 2, myDestination= 4, nrow=625, [start=1875, end=2500, startLocal= 1, endLocal=626] 
+myRank=10, mySource= 9, myDestination=11, nrow=625, [start=6250, end=6875, startLocal= 1, endLocal=626] 
+myRank=4, mySource= 3, myDestination= 5, nrow=625, [start=2500, end=3125, startLocal= 1, endLocal=626] 
+myRank=11, mySource=10, myDestination=12, nrow=625, [start=6875, end=7500, startLocal= 1, endLocal=626] 
+myRank=5, mySource= 4, myDestination= 6, nrow=625, [start=3125, end=3750, startLocal= 1, endLocal=626] 
+myRank=12, mySource=11, myDestination=13, nrow=625, [start=7500, end=8125, startLocal= 1, endLocal=626] 
+myRank=6, mySource= 5, myDestination= 7, nrow=625, [start=3750, end=4375, startLocal= 1, endLocal=626] 
+myRank=13, mySource=12, myDestination=14, nrow=625, [start=8125, end=8750, startLocal= 1, endLocal=626] 
+myRank=7, mySource= 6, myDestination= 8, nrow=625, [start=4375, end=5000, startLocal= 1, endLocal=626] 
+myRank=14, mySource=13, myDestination=15, nrow=625, [start=8750, end=9375, startLocal= 1, endLocal=626] 
+myRank=15, mySource=14, myDestination=-1, nrow=625, [start=9375, end=10000, startLocal= 1, endLocal=624] 
+myRank=0, mySource=-1, myDestination= 1, nrow=625, [start= 0, end=625, startLocal= 2, endLocal=626] 
+***********FINAL OUTPUT AFTER GATHER***********
+Wall-clock time = 296.178 (ms) 

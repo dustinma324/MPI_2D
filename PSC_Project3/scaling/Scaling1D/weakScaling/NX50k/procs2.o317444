@@ -1,0 +1,4 @@
+myRank=1, mySource= 0, myDestination=-1, nrow=100, [start=100, end=200, startLocal= 1, endLocal=99] 
+myRank=0, mySource=-1, myDestination= 1, nrow=100, [start= 0, end=100, startLocal= 2, endLocal=101] 
+***********FINAL OUTPUT AFTER GATHER***********
+Wall-clock time = 244.763 (ms) 

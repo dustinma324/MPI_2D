@@ -1,0 +1,32 @@
+PRG = mpiHeat
+EXE = $(PRG).exe
+
+CC = mpicc
+DEBUG = -g
+CFLAGS = -Wall -O2 -std=c99
+LIBS = -lm
+
+SRCS =  mpiMain.c myFunctions.c
+
+DEPS =  myFunctions.h definitions.h
+
+OBJECTS = $(SRCS:.c=.o)
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(EXE): $(OBJECTS)
+	$(CC) $(LDFLAGS) -o $@ $^ $(CFLAGS) $(LIBS)
+
+.PHONY: clean
+
+clean:
+	rm -f *.o $(EXE)
+
+.PHONY: tar
+
+tar:
+	tar -cvf $(PRG).tar $(SRCS) $(DEPS) Makefile
+	gzip $(PRG).tar
+
+

@@ -1,0 +1,2 @@
+gcc cpuHeat.c -O3 -lm -o CPU.exe
+./CPU.exe 500

@@ -1,0 +1,5 @@
+mpicc -o MPI.exe -Wall -std=c99 -O3 -lm mpiHeat_2v2.c
+mpirun --mca mpi_cuda_support 0 -np 4 ./MPI.exe 
+
+cat Process1.vtk
+cat Process0.vtk

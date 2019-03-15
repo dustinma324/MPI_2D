@@ -1,0 +1,10 @@
+myRank=5, mySource= 4, myDestination= 6, nrow=1250, [start=6250, end=7500, startLocal= 1, endLocal=1251] 
+myRank=6, mySource= 5, myDestination= 7, nrow=1250, [start=7500, end=8750, startLocal= 1, endLocal=1251] 
+myRank=4, mySource= 3, myDestination= 5, nrow=1250, [start=5000, end=6250, startLocal= 1, endLocal=1251] 
+myRank=7, mySource= 6, myDestination=-1, nrow=1250, [start=8750, end=10000, startLocal= 1, endLocal=1249] 
+myRank=2, mySource= 1, myDestination= 3, nrow=1250, [start=2500, end=3750, startLocal= 1, endLocal=1251] 
+myRank=0, mySource=-1, myDestination= 1, nrow=1250, [start= 0, end=1250, startLocal= 2, endLocal=1251] 
+myRank=3, mySource= 2, myDestination= 4, nrow=1250, [start=3750, end=5000, startLocal= 1, endLocal=1251] 
+myRank=1, mySource= 0, myDestination= 2, nrow=1250, [start=1250, end=2500, startLocal= 1, endLocal=1251] 
+***********FINAL OUTPUT AFTER GATHER***********
+Wall-clock time = 1172.959 (ms) 

@@ -1,0 +1,10 @@
+myRank=4, mySource= 3, myDestination= 5, nrow=100, [start=400, end=500, startLocal= 1, endLocal=101] 
+myRank=6, mySource= 5, myDestination= 7, nrow=100, [start=600, end=700, startLocal= 1, endLocal=101] 
+myRank=7, mySource= 6, myDestination=-1, nrow=100, [start=700, end=800, startLocal= 1, endLocal=99] 
+myRank=5, mySource= 4, myDestination= 6, nrow=100, [start=500, end=600, startLocal= 1, endLocal=101] 
+myRank=1, mySource= 0, myDestination= 2, nrow=100, [start=100, end=200, startLocal= 1, endLocal=101] 
+myRank=0, mySource=-1, myDestination= 1, nrow=100, [start= 0, end=100, startLocal= 2, endLocal=101] 
+myRank=3, mySource= 2, myDestination= 4, nrow=100, [start=300, end=400, startLocal= 1, endLocal=101] 
+myRank=2, mySource= 1, myDestination= 3, nrow=100, [start=200, end=300, startLocal= 1, endLocal=101] 
+***********FINAL OUTPUT AFTER GATHER***********
+Wall-clock time = 705.012 (ms) 

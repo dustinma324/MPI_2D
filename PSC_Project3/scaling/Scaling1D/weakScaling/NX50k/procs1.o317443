@@ -1,0 +1,3 @@
+myRank=0, mySource=-1, myDestination=-1, nrow=100, [start= 0, end=100, startLocal= 2, endLocal=99] 
+***********FINAL OUTPUT AFTER GATHER***********
+Wall-clock time = 194.687 (ms) 
