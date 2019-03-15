@@ -12,7 +12,9 @@ void exchange_ISend_and_IRecv(REAL *phi, const int *direction, const INT ncol, c
 void SolveHeatEQ(const REAL *phi, REAL *phi_new, const int *p_location, const INT ncol,
                  const INT nrow, const INT nGhostLayers);
 void setAlltoValue(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, REAL value);
+#if(OUTPUT)
 void outputMatrix(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, char *name);
 void outputMatrix1(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, char *name);
+#endif
 
 #endif

@@ -133,6 +133,7 @@ void setAlltoValue(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, REAL value)
     }
 }
 
+#if(OUTPUT)
 void outputMatrix(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, char *name)
 {
     FILE *file = fopen(name, "w");
@@ -158,3 +159,4 @@ void outputMatrix1(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, char *name)
     fprintf(file, "\n");
     fclose(file);
 }
+#endif

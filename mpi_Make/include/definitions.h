@@ -4,6 +4,9 @@
 #include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "hdf5.h"
+
+#define FILE "file.h5"
 
 typedef double REAL;
 typedef int    INT;
@@ -51,5 +54,5 @@ typedef int    INT;
 
 // Debug
 #define DEBUG 0
-
+#define OUTPUT 0 
 #endif

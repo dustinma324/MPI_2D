@@ -9,7 +9,7 @@ TARGET = $(BINDIR)/$(PROG)
 
 CC=mpicc
 DEBUG = -g 
-LIBS=-lm 
+LIBS=-lm -lhdf5
 CFLAGS=-Wall -O3 -std=c99 $(DEBUG) -I$(IDIR) 
 
 _DEPS = myFunctions.h definitions.h
