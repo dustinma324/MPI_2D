@@ -1,4 +1,4 @@
-PROG = mpiHeat2D
+PROG = mpiHeat2D.exe
 
 IDIR=./include
 BINDIR=./bin
