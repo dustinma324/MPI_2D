@@ -1,36 +1,40 @@
-PRG = HeatSolver
-EXECUTABLE = $(PRG).exe
-IDIR =./include
+PROG = mpiHeat2D
+
+IDIR=./include
+BINDIR=./bin
+OBJDIR=./src/obj/
+SOURCES=./src
+
+TARGET = $(BINDIR)/$(PROG)
+
 CC=mpicc
 DEBUG = -g 
-CFLAGS=-Wall -O2 -std=c99 $(DEBUG) -I$(IDIR) 
-
-OBJECTDIR=./src/obj/
-
-LDIR =./lib
-SOURCES = ./src
 LIBS=-lm 
+CFLAGS=-Wall -O3 -std=c99 $(DEBUG) -I$(IDIR) 
 
 _DEPS = myFunctions.h definitions.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJECTS = main.o myFunctions.o 
-OBJECTS = $(patsubst %,$(OBJECTDIR)/%,$(_OBJECTS))
+_OBJS = main.o myFunctions.o 
+OBJS = $(patsubst %,$(OBJDIR)/%,$(_OBJS))
 
 
-$(OBJECTDIR)/%.o: $(SOURCES)/%.c $(DEPS)
+$(OBJDIR)/%.o: $(SOURCES)/%.c $(DEPS)
 	@echo "Generating object files ..."
-	@$(CC) -c -o $@ $< $(CFLAGS)
+	@$(CC) $(CFLAGS) -c -o $@ $<
 
-$(EXECUTABLE): $(OBJECTS)
+$(TARGET): makedirectories $(OBJS)
 	@echo "Generating the executable file " 
-	@$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+	@$(CC) $(CFLAGS) $(LIBS) -o $@ $(OBJS) 
 
 .PHONY: clean
 
+makedirectories:
+	@mkdir -p $(OBJDIR) $(BINDIR)
+
 clean:
 	@echo "Cleaning up .. " 
-	@rm -f $(OBJECTDIR)/*.o *~ $(EXECUTABLE) *.txt
+	@rm -f $(OBJDIR)/*.o *~ $(PROG) *.txt
 
 
 .PHONY:pdf
@@ -38,8 +42,8 @@ clean:
 pdf:
 	@echo " Generating PDFs files ... " 
 	@a2ps Makefile $(SOURCES)/*.c $(DEPS) --pro=color \
-	--columns=2 -E -o mpi2D.ps
-	@ps2pdf mpi2D.ps 
+	--columns=2 -E -o 2DMPI.ps
+	@ps2pdf 2DMPI.ps 
 	@rm -rf *.ps
 
 .PHONY:tar

@@ -92,8 +92,8 @@ void exchange_ISend_and_IRecv(REAL *phi, const int *direction, const INT ncol, c
               MPI_COMM_WORLD, &request[ 1 ]);
 
     // South
-    MPI_Isend(phi + (nrow * nElements), nElements, MPI_DOUBLE, direction[ S ], tag1,
-              MPI_COMM_WORLD, &request[ 2 ]);
+    MPI_Isend(phi + (nrow * nElements), nElements, MPI_DOUBLE, direction[ S ], tag1, MPI_COMM_WORLD,
+              &request[ 2 ]);
     MPI_Irecv(phi, nElements, MPI_DOUBLE, direction[ N ], tag1, MPI_COMM_WORLD, &request[ 3 ]);
 
     // East
@@ -111,7 +111,8 @@ void exchange_ISend_and_IRecv(REAL *phi, const int *direction, const INT ncol, c
     MPI_Type_free(&MPI_column_E);
 }
 
-void SolveHeatEQ(const REAL *phi, REAL *phi_new, const int *p_location, const INT ncol, const INT nrow, const INT nGhostLayers)
+void SolveHeatEQ(const REAL *phi, REAL *phi_new, const int *p_location, const INT ncol,
+                 const INT nrow, const INT nGhostLayers)
 {
     for (INT j = p_location[ N ]; j < p_location[ S ]; j++) {
         for (INT i = p_location[ W ]; i < p_location[ E ]; i++) {

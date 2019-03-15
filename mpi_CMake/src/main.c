@@ -50,10 +50,10 @@ INT main(INT argc, char **argv)
 
     // Allocating Memory for every process after mesh decomposition
     REAL *phi, *phi_new, *tmp;
-    phi = ( REAL * ) calloc((nrow + nGhostLayers) * (ncol + nGhostLayers), sizeof(*phi));
+    phi     = ( REAL * ) calloc((nrow + nGhostLayers) * (ncol + nGhostLayers), sizeof(*phi));
     phi_new = ( REAL * ) calloc((nrow + nGhostLayers) * (ncol + nGhostLayers), sizeof(*phi_new));
 
-//    setAlltoValue(phi, nrow, ncol, nGhostLayers, ( REAL ) myRank + 1.0);
+    //    setAlltoValue(phi, nrow, ncol, nGhostLayers, ( REAL ) myRank + 1.0);
     boundaryConditions(phi, ncol, nrow, nGhostLayers, direction);
 
     MPI_Barrier(MPI_COMM_WORLD);
@@ -73,9 +73,7 @@ INT main(INT argc, char **argv)
     double elapsedTime = finishT - startT;
     double wallTime;
     MPI_Reduce(&elapsedTime, &wallTime, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
-    if (myRank == MASTER) {
-         printf("Wall-clock time = %.3f (ms) \n", wallTime * 1e3);
-    }
+    if (myRank == MASTER) { printf("Wall-clock time = %.3f (ms) \n", wallTime * 1e3); }
 
     // Deallocating Arrays
     free(phi);

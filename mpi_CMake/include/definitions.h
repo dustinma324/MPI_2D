@@ -10,7 +10,7 @@ typedef int    INT;
 
 // Parameters
 #define IDIM ( INT ) 2
-#define JDIM ( INT ) 2 
+#define JDIM ( INT ) 2
 #define NX ( INT ) 10
 #define NY ( INT ) 10
 
