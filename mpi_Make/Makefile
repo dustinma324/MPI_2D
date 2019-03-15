@@ -34,7 +34,8 @@ makedirectories:
 
 clean:
 	@echo "Cleaning up .. " 
-	@rm -f $(OBJDIR)/*.o *~ $(PROG) *.txt
+	@rm -f $(OBJDIR)/*.o *~ $(TARGET) *.txt
+	@rm -f $(BINDIR)/*.pdf
 
 
 .PHONY:pdf
@@ -45,6 +46,7 @@ pdf:
 	--columns=2 -E -o 2DMPI.ps
 	@ps2pdf 2DMPI.ps 
 	@rm -rf *.ps
+	@mv *.pdf $(BINDIR)
 
 .PHONY:tar
 
