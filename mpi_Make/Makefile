@@ -10,6 +10,7 @@ TARGET = $(BINDIR)/$(PROG)
 CC=mpicc
 DEBUG = -g 
 LIBS=-lm -lhdf5
+HDF5LIB=/ihome/crc/install/gcc-5.4.0/openmpi-2.0.2/hdf5/1.8.17/lib/
 CFLAGS=-Wall -O3 -std=c99 $(DEBUG) -I$(IDIR) 
 
 _DEPS = myFunctions.h definitions.h outputHDF5.h
