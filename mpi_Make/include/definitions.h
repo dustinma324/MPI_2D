@@ -1,19 +1,19 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
+#include "hdf5.h"
 #include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "hdf5.h"
 
-#define FILE "file.h5"
+#define FILE "Temperature.h5"
 
 typedef double REAL;
 typedef int    INT;
 
 // Parameters
-#define IDIM ( INT ) 2
-#define JDIM ( INT ) 2
+#define IDIM ( INT ) 1
+#define JDIM ( INT ) 1
 #define NX ( INT ) 10
 #define NY ( INT ) 10
 
@@ -54,5 +54,5 @@ typedef int    INT;
 
 // Debug
 #define DEBUG 0
-#define OUTPUT 0 
+#define OUTPUT 0
 #endif

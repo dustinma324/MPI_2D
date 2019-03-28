@@ -12,10 +12,10 @@ DEBUG = -g
 LIBS=-lm -lhdf5
 CFLAGS=-Wall -O3 -std=c99 $(DEBUG) -I$(IDIR) 
 
-_DEPS = myFunctions.h definitions.h
+_DEPS = myFunctions.h definitions.h outputHDF5.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJS = main.o myFunctions.o 
+_OBJS = main.o myFunctions.o outputHDF5.o
 OBJS = $(patsubst %,$(OBJDIR)/%,$(_OBJS))
 
 
@@ -59,4 +59,3 @@ tar:
 remove:
 	@echo " Removing all the PDFs, TAR.GZ files ... "
 	@rm -rf *.tar.gz *.ps *.pdf
-

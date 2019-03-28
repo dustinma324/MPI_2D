@@ -10,6 +10,7 @@
 
 #include "definitions.h"
 #include "myFunctions.h"
+#include "outputHDF5.h"
 
 INT main(INT argc, char **argv)
 {
@@ -75,13 +76,7 @@ INT main(INT argc, char **argv)
     MPI_Reduce(&elapsedTime, &wallTime, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
     if (myRank == MASTER) { printf("Wall-clock time = %.3f (ms) \n", wallTime * 1e3); }
 
-    // Implementing HDF5 output format
-    hid_t	file_id;
-    herr_t	status;
-
-    file_id = H5Fcreate("TemperatureDist.h5", H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
-
-    status = H5Fclose(file_id);
+    output_hdf5(nDims, nrow, ncol);
 
     // Deallocating Arrays
     free(phi);

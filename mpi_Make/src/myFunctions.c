@@ -133,7 +133,7 @@ void setAlltoValue(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, REAL value)
     }
 }
 
-#if(OUTPUT)
+#if (OUTPUT)
 void outputMatrix(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, char *name)
 {
     FILE *file = fopen(name, "w");
