@@ -76,7 +76,7 @@ INT main(INT argc, char **argv)
     MPI_Reduce(&elapsedTime, &wallTime, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
     if (myRank == MASTER) { printf("Wall-clock time = %.3f (ms) \n", wallTime * 1e3); }
 
-    output_hdf5(nDims, nrow, ncol);
+    output_hdf5(nDims, nrow, ncol, phi);
 
     // Deallocating Arrays
     free(phi);

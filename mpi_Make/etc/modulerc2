@@ -1,4 +1,4 @@
 module purge
 module load gcc/4.8.5
 module load openmpi/2.0.2
-export LD_LIBRARY_PATH=/ihome/crc/install/gcc-5.4.0/openmpi-2.0.2/hdf5/1.8.17/lib/ 
+export LD_LIBRARY_PATH=/ihome/crc/install/gcc-5.4.0/openmpi-2.0.2/hdf5/1.8.17/lib:

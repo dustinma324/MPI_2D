@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #Prequisites
+=======
+# Prerequisites
+>>>>>>> 00c99ade2b2308a9be8a6f0660d154aad44c12b4
 *.d
 
 # Compiled Object files
@@ -31,6 +35,10 @@
 *.out
 *.app
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 00c99ade2b2308a9be8a6f0660d154aad44c12b4
 #swap files by vim
 *.swp
 *.swl
@@ -39,6 +47,10 @@
 *.swo
 *.swk
 
+<<<<<<< HEAD
 #visual files
 *.pdf
 *.h5
+=======
+
+>>>>>>> 00c99ade2b2308a9be8a6f0660d154aad44c12b4
