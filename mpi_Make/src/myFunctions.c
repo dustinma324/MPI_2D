@@ -33,7 +33,7 @@ void boundaryConditions(REAL *phi, const INT ncol, const INT nrow, const int nGh
     }
 }
 
-void decomposeMesh_2D(INT *coord_2D, INT *direction, INT *location, INT *p_location, INT *nrow,
+void decomposeMesh_2D(INT IDIM, INT JDIM, INT *coord_2D, INT *direction, INT *location, INT *p_location, INT *nrow,
                       INT *ncol)
 {
     // Determining Cartesian Start and End of XY direction in location[]
@@ -132,31 +132,3 @@ void setAlltoValue(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, REAL value)
         }
     }
 }
-
-#if (OUTPUT)
-void outputMatrix(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, char *name)
-{
-    FILE *file = fopen(name, "w");
-    for (INT j = 0; j < (nrow + nGhostLayers); j++) {
-        for (INT i = 0; i < (ncol + nGhostLayers); i++) {
-            fprintf(file, "%6.2f ", phi[ IC ]);
-        }
-        fprintf(file, "\n");
-    }
-    fprintf(file, "\n");
-    fclose(file);
-}
-
-void outputMatrix1(REAL *phi, INT nrow, INT ncol, INT nGhostLayers, char *name)
-{
-    FILE *file = fopen(name, "w");
-    for (INT j = 1; j < nrow + 1; j++) {
-        for (INT i = 1; i < ncol + 1; i++) {
-            fprintf(file, "%6.2f ", phi[ IC ]);
-        }
-        fprintf(file, "\n");
-    }
-    fprintf(file, "\n");
-    fclose(file);
-}
-#endif

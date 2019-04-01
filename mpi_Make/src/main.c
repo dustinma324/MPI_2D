@@ -14,6 +14,14 @@
 
 INT main(INT argc, char **argv)
 {
+    if (argc < 2) {
+    perror("Command-line usage: executableName <X-Dimension> <Y-Dimension>");
+    exit(1);
+    }
+
+    int IDIM = atof(argv[1]);
+    int JDIM = atof(argv[2]);
+
     INT nProcs;     // number of processes
     INT myRank;     // process rank
     INT nrow, ncol; // number of row needed to be allocated by local array
@@ -40,7 +48,7 @@ INT main(INT argc, char **argv)
     MPI_Cart_shift(comm2D, X, +1, &direction[ W ], &direction[ E ]); // West and East
 
     // Mesh Decompotistion
-    decomposeMesh_2D(coord_2D, direction, location, p_location, &nrow, &ncol);
+    decomposeMesh_2D(IDIM, JDIM, coord_2D, direction, location, p_location, &nrow, &ncol);
 
     printf("myRank=%d, N=%2.1d, S=%2.1d, E=%2.1d, W=%2.1d, ncol=%d, nrow=%d, Coord=<%d, %d>, "
            "X~[%d,%d], Y~[%d,%d], "
@@ -59,7 +67,7 @@ INT main(INT argc, char **argv)
 
     MPI_Barrier(MPI_COMM_WORLD);
     double startT = MPI_Wtime( );
-    REAL iter = 0.f;
+    REAL   iter   = 0.f;
     for (iter = 0.f; iter < MAXITER; iter += DT) {
         exchange_ISend_and_IRecv(phi, direction, ncol, nrow, nGhostLayers);
         SolveHeatEQ(phi, phi_new, p_location, ncol, nrow, nGhostLayers);
@@ -75,9 +83,10 @@ INT main(INT argc, char **argv)
     double elapsedTime = finishT - startT;
     double wallTime;
     MPI_Reduce(&elapsedTime, &wallTime, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
-    if (myRank == MASTER) { printf("Wall-clock time = %.3f (ms) \n", wallTime * 1e3); }
+    if (myRank == MASTER) printf("Wall-clock time = %.3f (ms) \n", wallTime * 1e3);
 
     output_hdf5(nDims, nrow, ncol, nGhostLayers, phi);
+    if (myRank == MASTER) dump_paraview_xdmf(phi, wallTime);
 
     // Deallocating Arrays
     free(phi);
