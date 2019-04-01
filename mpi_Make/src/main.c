@@ -59,7 +59,8 @@ INT main(INT argc, char **argv)
 
     MPI_Barrier(MPI_COMM_WORLD);
     double startT = MPI_Wtime( );
-    for (REAL iter = 0.f; iter < MAXITER; iter += DT) {
+    REAL iter = 0.f;
+    for (iter = 0.f; iter < MAXITER; iter += DT) {
         exchange_ISend_and_IRecv(phi, direction, ncol, nrow, nGhostLayers);
         SolveHeatEQ(phi, phi_new, p_location, ncol, nrow, nGhostLayers);
         boundaryConditions(phi_new, ncol, nrow, nGhostLayers, direction);
@@ -76,7 +77,7 @@ INT main(INT argc, char **argv)
     MPI_Reduce(&elapsedTime, &wallTime, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
     if (myRank == MASTER) { printf("Wall-clock time = %.3f (ms) \n", wallTime * 1e3); }
 
-    output_hdf5(nDims, nrow, ncol, phi);
+    output_hdf5(nDims, nrow, ncol, nGhostLayers, phi);
 
     // Deallocating Arrays
     free(phi);

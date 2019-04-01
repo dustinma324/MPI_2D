@@ -2,7 +2,7 @@
 
 static const char *Scalnames[ HDF5_NUM_SCALARS ] = {"Temperature"};
 
-void output_hdf5(const int nDims, const int nrow, const int ncol, const REAL *phi)
+void output_hdf5(const int nDims, const int nrow, const int ncol, const int nGhostLayers, const REAL *phi)
 {
     // Implementing HDF5 output format
     hid_t   group_id;            /* group identifier */
@@ -14,10 +14,8 @@ void output_hdf5(const int nDims, const int nrow, const int ncol, const REAL *ph
     herr_t __attribute__((unused)) status;
 
     // Creating set for X, Y, Z coordinate arrays
-    dimsf[ 0 ] = NX;
-    dimsf[ 1 ] = NY;
-
-    char *names[] = {"X", "Y"};
+    dimsf[ 0 ] = ncol;
+    dimsf[ 1 ] = nrow;
 
     // Set up file for parallel I/O access
     plist_id = H5Pcreate(H5P_FILE_ACCESS);
@@ -25,27 +23,28 @@ void output_hdf5(const int nDims, const int nrow, const int ncol, const REAL *ph
 
     // Create new file and release property list identifier
     file_id = H5Fcreate(FILE, H5F_ACC_TRUNC, H5P_DEFAULT, plist_id); // For Parallel I/O
-
     H5Pclose(plist_id);
-    group_id = H5Gcreate(file_id, "Temperature", H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    group_id = H5Gcreate(file_id, "MPI2DTemp", H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
 
 #if 1 // Writing Coordinates
-    REAL *  x        = ( REAL * ) malloc(nrow * ncol * sizeof(REAL));
-    REAL *  y        = ( REAL * ) malloc(nrow * ncol * sizeof(REAL));
     REAL *  x_coords = ( REAL * ) malloc(ncol * sizeof(REAL));
     REAL *  y_coords = ( REAL * ) malloc(nrow * sizeof(REAL));
 
     hsize_t k;
-    for (k = 0; k < count[ 2 ]; k++) {
+    for (k = 0; k < dimsf[ 0 ]; k++) {
         x_coords[ k ] = k * DX;
     }
-    for (k = 0; k < count[ 1 ]; k++) {
+    for (k = 0; k < dimsf[ 1 ]; k++) {
         y_coords[ k ] = k * DY;
     }
 
     hsize_t x_size = dimsf[ 0 ];
     hsize_t y_size = dimsf[ 1 ];
 
+    printf("Writing Coordinates\n");
+    char* names[] = {"X","Y"};
+
+    // Dataset Write Section
     for (int coords = 0; coords < nDims; coords++) {
         switch (coords) {
             case 0:
@@ -92,7 +91,7 @@ void output_hdf5(const int nDims, const int nrow, const int ncol, const REAL *ph
     }
 #endif
 
-#if 0 // Writing Scalar Values
+#if 1 // Writing Scalar Values
     printf("Writing Scalars: %p\n", phi);
 
     for (int i = 0; i < HDF5_NUM_SCALARS; i++) {
@@ -110,7 +109,7 @@ void output_hdf5(const int nDims, const int nrow, const int ncol, const REAL *ph
         plist_id  = H5Pcreate(H5P_DATASET_XFER);
         H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE);
 
-        status = H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, memspace, filespace, plist_id, y);
+        status = H5Dwrite(dset_id, H5T_NATIVE_DOUBLE, memspace, filespace, plist_id, phi);
 
         H5Dclose(dset_id);
         H5Sclose(filespace);
@@ -119,10 +118,15 @@ void output_hdf5(const int nDims, const int nrow, const int ncol, const REAL *ph
     }
 #endif
 
-    free(x);
-    free(y);
+#if 1
     free(x_coords);
     free(y_coords);
+#endif
 
     printf("Finished HDF5\n");
+}
+
+void dump_paraview_xdmf(const REAL* phi)
+{
+
 }

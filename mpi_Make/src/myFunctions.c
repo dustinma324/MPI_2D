@@ -3,7 +3,7 @@
 void boundaryConditions(REAL *phi, const INT ncol, const INT nrow, const int nGhostLayers,
                         const int *direction)
 {
-    if (direction[ N ] < 0) {
+    if (direction[ N ] == MPI_PROC_NULL) {
         for (INT j = 1; j < 2; j++) {
             for (INT i = 0; i < (ncol + nGhostLayers); i++) {
                 phi[ IC ] = TMAX;
